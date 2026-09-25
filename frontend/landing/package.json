@@ -1,0 +1,31 @@
+{
+  "name": "rawnaq-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "oxlint"
+  },
+  "dependencies": {
+    "@fontsource-variable/readex-pro": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.6",
+    "@phosphor-icons/react": "^2.1.7",
+    "gsap": "^3.13.0",
+    "motion": "^12.23.12",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "oxlint": "^1.74.0",
+    "tailwindcss": "^4.1.13",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.5"
+  }
+}

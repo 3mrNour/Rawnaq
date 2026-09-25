@@ -1,0 +1,14 @@
+{
+  "name": "rawnaq-saas",
+  "version": "1.0.0",
+  "description": "Rawnaq SaaS Laundry Management System",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:landing": "npm run dev --prefix frontend/landing",
+    "build:landing": "npm run build --prefix frontend/landing",
+    "lint:landing": "npm run lint --prefix frontend/landing"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

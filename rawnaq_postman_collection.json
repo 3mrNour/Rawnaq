@@ -1,0 +1,238 @@
+{
+  "info": {
+    "name": "Rawnaq SaaS API",
+    "description": "Postman collection for the Rawnaq multi-tenant SaaS application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Admin Auth",
+      "item": [
+        {
+          "name": "Login SuperAdmin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@rawnaq.com\",\n  \"password\": \"adminpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Shops",
+      "item": [
+        {
+          "name": "Get All Shops",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops"]
+            }
+          }
+        },
+        {
+          "name": "Get Shop Metrics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops/metrics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops", "metrics"]
+            }
+          }
+        },
+        {
+          "name": "Create Shop",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Laundry\",\n  \"dailyCapacityLimit\": 100,\n  \"expiryDate\": \"2030-12-31T23:59:59.000Z\",\n  \"priceList\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops"]
+            }
+          }
+        },
+        {
+          "name": "Update Shop Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"suspended\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops/:id/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops", ":id", "status"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "replace_with_shop_id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Extend Shop Expiry",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newExpiryDate\": \"2031-12-31T23:59:59.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops/:id/expiry",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops", ":id", "expiry"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "replace_with_shop_id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Revoke Shop Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops/:id/revoke-key",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops", ":id", "revoke-key"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "replace_with_shop_id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unlock Shop Device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/shops/:id/unlock-device",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "shops", ":id", "unlock-device"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "replace_with_shop_id"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

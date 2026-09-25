@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Readex Pro Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Locked palette: cold neutrals, one cobalt accent. */
+  --color-canvas: #0b0b0c;
+  --color-surface: #131316;
+  --color-raised: #1a1a1f;
+  --color-hairline: #26262c;
+  --color-ink: #f4f4f5;
+  --color-ink-muted: #a1a1aa;
+  /* Lightened from #6b6b74, which only reached 2.76:1 on --color-surface and
+     failed WCAG AA for the 10-14px meta text it is used for. */
+  --color-ink-faint: #8b8b95;
+
+  --color-accent: #2f5fe0;
+  --color-accent-bright: #6f8fff;
+  --color-accent-deep: #1c3fa8;
+
+  /* Semantic: order-ready state only. Never decorative. */
+  --color-ready: #34a06a;
+  /* Darkened green for tinted chips that carry ready-coloured text. A 20%
+     tint of --color-ready only reached 3.98:1, under AA for small text. */
+  --color-ready-surface: #12241a;
+
+  --radius-panel: 1rem;
+  --radius-control: 999px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  /* Arabic display type needs a touch more leading than Latin to breathe. */
+  h1,
+  h2,
+  h3 {
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-bright);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
